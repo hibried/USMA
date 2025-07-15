@@ -1,0 +1,69 @@
+async function registerUser() {
+    try {
+      const response = await axios.post('https://reqres.in/api/register',
+        {
+          "email": "eve.holt@reqres.in",
+          "password": "pistol"
+        },
+        {
+          headers: {
+            'x-api-key': 'reqres-free-v1'
+          }
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  }
+
+  async function loginUser() {
+    try {
+      const response = await axios.post('https://reqres.in/api/login',
+        {
+          "email": "eve.holt@reqres.in"
+        },
+        {
+          headers: {
+            'x-api-key': 'reqres-free-v1'
+          }
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  }
+  
+  async function fetchUsers() {
+    try {
+      const response = await axios.get('https://reqres.in/api/users', {
+        headers: {
+          'x-api-key': 'reqres-free-v1'
+        }
+      });
+      console.log(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function fetchSingleUser() {
+    try {
+      const response = await axios.get('https://reqres.in/api/users/2', {
+        headers: {
+          'x-api-key': 'reqres-free-v1'
+        }
+      });
+      console.log(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    // fetchUsers();
+    // registerUser();
+    // loginUser();
+    fetchSingleUser();
+  }, [])
