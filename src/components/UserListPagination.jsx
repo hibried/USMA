@@ -20,11 +20,11 @@ const UserListPagination = (props) => {
   };
 
   return (
-    <div className="flex flex-col bg-[rgba(255,255,255,0.21)] rounded-2xl p-2">
+    <div className="flex flex-col bg-[rgba(255,255,255,0.21)] rounded-2xl p-2 shadow-md">
       <div className="grid gap-2">
         {currentItems.map((user, index) => (
-          <Link to={`/user-detail/${user.id}`}>
-            <div key={index} className="flex items-center gap-5 p-5 bg-[rgba(0,0,0,0.6)] rounded-xl shadow-lg">
+          <Link key={index} to={`/user-detail/${user.id}`}>
+            <div className="flex items-center gap-5 p-5 bg-[rgba(0,0,0,0.6)] rounded-xl shadow-md  transition duration-300 hover:bg-[rgba(0,0,0,0.4)]">
                 <img src={user.avatar} className="rounded-full w-20" alt="" />
                 <div>
                     <h3 className="font-bold">{user.first_name} {user.last_name}</h3>
