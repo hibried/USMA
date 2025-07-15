@@ -6,7 +6,6 @@ import { Toaster, toast } from 'sonner';
 const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState("");
 
     const changeUsername = (e) => {
         setUsername(e.target.value);
@@ -33,7 +32,6 @@ const LoginPage = () => {
             console.log(response.data);
             toast.success('Successfully login');
             // localStorage.setItem("accessToken", response.data.accessToken);
-            // setSuccess("Login berhasil");
 
             // setTimeout(() => {
             //     useNavigate("/");
@@ -49,19 +47,25 @@ const LoginPage = () => {
     return (
         <div>
             <Toaster />
-            <p className="text-center">Please login to access ASG_D30</p>
-            {success && <p>{success}</p>}
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                <legend className="fieldset-legend">Login</legend>
+            <div className="lg:flex gap-10">
+                <div className="mb-5 lg:mb-0">
+                    <h1 className="text-5xl text-center lg:text-start font-semibold tracking-widest mb-3">ASG_D30</h1>
+                    <p className="text-xl text-center lg:text-start font-light tracking-wide">
+                        ASG_D30 displays a list of users<br/>with details of each user.
+                    </p>
+                </div>
+                <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                    <legend className="fieldset-legend">Log in to ASG_D30</legend>
 
-                <label className="label">Email</label>
-                <input type="email" className="input validator" placeholder="Email" onChange={changeUsername} required />
+                    <input type="email" className="input validator mb-1" placeholder="Email address" onChange={changeUsername} required />
 
-                <label className="label">Password</label>
-                <input type="password" className="input" placeholder="Password" onChange={changePassword} required />
+                    <input type="password" className="input" placeholder="Password" onChange={changePassword} required />
 
-                <button className="btn btn-neutral mt-4" onClick={handleSubmit}>Login</button>
-            </fieldset>
+                    <button className="btn btn-neutral mt-2 mb-2" onClick={handleSubmit}>Log In</button>
+                    <a href={'/register'} className="text-center hover:underline">Don't have an account yet?</a>
+
+                </fieldset>
+            </div>
         </div>
     )
 }

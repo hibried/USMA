@@ -6,7 +6,6 @@ import { toast } from 'sonner';
 const RegisterPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState("");
 
     const changeUsername = (e) => {
         setUsername(e.target.value);
@@ -33,7 +32,6 @@ const RegisterPage = () => {
             console.log(response.data);
             toast.success('Successfully registered');
             // localStorage.setItem("accessToken", response.data.accessToken);
-            // setSuccess("Login berhasil");
 
             // setTimeout(() => {
             //     useNavigate("/");
@@ -48,18 +46,15 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <p className="text-center">Register to ASG_D30</p>
-            {success && <p>{success}</p>}
+            <h1 className="text-5xl text-center font-semibold tracking-widest mb-5">ASG_D30</h1>
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                <legend className="fieldset-legend">Register</legend>
+                <legend className="fieldset-legend">Create a new account</legend>
 
-                <label className="label">Email</label>
-                <input type="email" className="input validator" placeholder="Email" onChange={changeUsername} required />
-
-                <label className="label">Password</label>
+                <input type="email" className="input validator mb-1" placeholder="Email address" onChange={changeUsername} required />
                 <input type="password" className="input" placeholder="Password" onChange={changePassword} required />
 
-                <button className="btn btn-neutral mt-4" onClick={handleSubmit}>Register</button>
+                <button className="btn btn-neutral mt-2 mb-2" onClick={handleSubmit}>Sign Up</button>
+                <a href={'/login'} className="text-center hover:underline">Already have an account?</a>
             </fieldset>
         </div>
     )
