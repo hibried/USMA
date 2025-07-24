@@ -10,12 +10,18 @@ import GuestRoute from './components/GuestRoute';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import './App.css'
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
     <>
       <Toaster />
       <Routes>
+        <Route path='/landing' element={
+          <GuestRoute>
+            <LandingPage />
+          </GuestRoute>
+        } />
         <Route path='/login' element={
           <GuestRoute>
             <LoginPage />
