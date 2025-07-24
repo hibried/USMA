@@ -1,5 +1,5 @@
-import Navbar from "./Navbar.jsx";
 import { Navigate, Outlet } from "react-router-dom";
+import Navbar from "./Navbar.jsx";
 
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("accessToken");

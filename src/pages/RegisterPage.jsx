@@ -17,6 +17,12 @@ const RegisterPage = () => {
 
     const navigate = useNavigate();
 
+    const [theme, setTheme] = useState('light');
+
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    };
+
     const handleSubmit = async () => {
         const payload = {
             username: username,
@@ -48,20 +54,55 @@ const RegisterPage = () => {
 
     useEffect(() => {
         document.title = "ASG_D30 | Register";
+        document.documentElement.setAttribute('data-theme', theme);
     }, []);
 
     return (
-        <div className="h-screen flex flex-col justify-center items-center">
-            <h1 className="text-5xl text-center font-semibold tracking-widest mb-5">ASG_D30</h1>
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                <legend className="fieldset-legend">Create a new account</legend>
-
-                <input type="email" className="input validator mb-1" placeholder="Email address" onChange={changeUsername} required />
-                <input type="password" className="input" placeholder="Password" onChange={changePassword} required />
-
-                <button className="btn btn-neutral mt-2 mb-2" onClick={handleSubmit}>Register</button>
-                <a href={'/login'} className="text-center hover:underline">Already have an account?</a>
-            </fieldset>
+        <div className="flex justify-center items-center h-screen sm:bg-black sm:px-65 sm:py-15">
+            <div className="flex w-full h-full rounded-3xl overflow-y-auto sm:overflow-hidden shadow-lg sm:min-w-[499px]">
+                <div className="hidden xl:flex items-end bg-[url(/register/tower.webp)] bg-cover bg-center h-full w-full">
+                    <p className="text-white text-[12px] ml-13 mb-5">Photo by <a href="https://unsplash.com/@irrabagon" target="_blank" className="underline">Alexandr Popadin</a></p>
+                </div>
+                <div className="flex flex-col justify-between w-full xl:w-[499px] px-4 sm:px-13 pt-7 sm:pt-13 pb-5 bg-white shrink-0">
+                    <div>
+                        <div className="flex items-center gap-2 mb-10 sm:mb-12">
+                            <img src="/login/Avatar-UI-Unicorn-V2.png" className="w-11 sm:w-13" alt="" />
+                            <h1 className="text-[#1A1A1A] text-[17px] sm:text-[20px] font-bold sm:tracking-wide">USMA</h1>
+                        </div>
+                        <div>
+                            <h3 className="text-[#1A1A1A] text-[23px] font-bold tracking-wide">Hello!</h3>
+                            <p className="mb-5 sm:mb-4">Sign Up to Get Started</p>
+                            <fieldset className="fieldset">
+                                <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Full Name</legend>
+                                <input type="text" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your full name" />
+                                <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Email Address</legend>
+                                <input type="email" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your email address" />
+                                <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Password</legend>
+                                <input type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Enter your password" />
+                                <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Confirm Password</legend>
+                                <input type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Confirm your password" />
+                                <div className="flex items-center gap-2 mt-2 sm:mt-4">
+                                    <input type="checkbox" className="checkbox bg-[#f2f2f2] checked:bg-blue-500 text-white border-[#e5e5e5] border-[0.5px]" />
+                                    <span className="text-[13px]">I agree to the Terms & Conditions</span>
+                                </div>
+                                <button className="btn bg-[#007aff] active:bg-[#2e5b8c] text-white text-[16px] rounded-lg mt-5 sm:mt-7 h-12">
+                                    Sign in
+                                </button>
+                                <p className="text-[13px] text-center mt-5 sm:mt-4">
+                                    Don't have an account? <a href="" className="text-[#007aff] text-[13px] hover:underline ml-1">Sign up now</a>
+                                </p>
+                            </fieldset>
+                        </div>
+                    </div>
+                    {/* <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <img src="/login/Figma.png" alt="" />
+                            <a href="https://www.figma.com/@uiunicorn" target="_blank" className="text-[#007aff] text-[13px] ml-1">@uiunicom</a>
+                        </div>
+                        <p className="text-[13px] text-[#666666]">@ Perfect Login 2021</p>
+                    </div> */}
+                </div>
+            </div>
         </div>
     )
 }
