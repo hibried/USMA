@@ -84,14 +84,43 @@ function LandingPage() {
                 </div>
             </div>
             {/* Features */}
-            <div className="text-center bg-white">
-                <h3 className="text-5xl font-bold">Tailor-made features</h3>
-                <p>
-                    Lorem ipsum is common placeholder text used to demonstrate the graphic elements 
-                    of a document or visual presentation.
-                </p>
-                <div>
-
+            <div className="bg-white px-5 sm:px-10 lg:px-18 xl:px-30 lg:py-30 relative">
+                <div className="absolute top-[-1.15%] sm:top-[-5%] lg:top-17 right-0 sm:right-2 md:right-8 bg-[#9c70e921] w-[250px] h-[250px] sm:w-[424px] sm:h-[424px] md:w-[550px] md:h-[550px] rounded-full shrink-0">
+                </div>
+                <h3 className="text-4xl md:text-5xl font-bold leading-15 mb-10 sm:mb-14 md:mb-19 relative">Discover the key features</h3>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-7 relative">
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Mobile<br className="hidden md:block" /> Responsive</h4>
+                        <img src="/landing/Property 1=01.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">User<br className="hidden md:block" /> Friendly</h4>
+                        <img src="/landing/Property 1=02.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Well Organized Layers</h4>
+                        <img src="/landing/Property 1=03.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Easily<br className="hidden md:block" /> Customisable</h4>
+                        <img src="/landing/Property 1=04.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Better<br className="hidden md:block" /> Components</h4>
+                        <img src="/landing/Property 1=05.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Multiple<br className="hidden md:block" /> Blocks</h4>
+                        <img src="/landing/Property 1=06.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Robust<br className="hidden md:block" /> Workflow</h4>
+                        <img src="/landing/Property 1=07.png" className="w-8" alt="" />
+                    </div>
+                    <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
+                        <h4 className="text-2xl lg:text-3xl font-bold">Mobile<br className="hidden md:block" /> Responsive</h4>
+                        <img src="/landing/Property 1=08.png" className="w-8" alt="" />
+                    </div>
                 </div>
             </div>
         </div>
