@@ -4,28 +4,41 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'sonner';
 
 const RegisterPage = () => {
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isDisabled, setIsDisabled] = useState("disabled");
+    const [isChecked, setIsChecked] = useState(false);
 
-    const changeUsername = (e) => {
-        setUsername(e.target.value);
+    const changeName = (e) => {
+        setName(e.target.value);
+    };
+
+    const changeEmail = (e) => {
+        setEmail(e.target.value);
     };
 
     const changePassword = (e) => {
         setPassword(e.target.value);
     };
 
-    const navigate = useNavigate();
-
-    const [theme, setTheme] = useState('light');
-
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
+    const changeConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value);
     };
 
+    const handleCheckbox = (event) => {
+        setIsChecked(event.target.checked);
+    };
+
+    const navigate = useNavigate();
+
     const handleSubmit = async () => {
+
+        if(password !== confirmPassword) return toast.error("Password confirmation doesn't match");
+
         const payload = {
-            username: username,
+            email: email,
             password: password,
         };
 
@@ -39,7 +52,7 @@ const RegisterPage = () => {
 
         try {
             const response = await axios.post('https://reqres.in/api/register', payload, headers);
-            localStorage.setItem("accessToken", response.data.token);
+            // localStorage.setItem("accessToken", response.data.token);
             setTimeout(() => {
                 navigate("/login");
                 toast.dismiss(loading_toast);
@@ -53,9 +66,16 @@ const RegisterPage = () => {
     };
 
     useEffect(() => {
-        document.title = "ASG_D30 | Register";
-        document.documentElement.setAttribute('data-theme', theme);
+      document.title = "ASG_D30 | Register";
     }, []);
+
+    useEffect(() => {
+        if(name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword.length > 0 && isChecked === true){
+            setIsDisabled("");
+        } else {
+            setIsDisabled("disabled")
+        }
+    }, [name, email, password, confirmPassword, isChecked]);
 
     return (
         <div className="flex justify-center items-center h-screen sm:bg-black sm:px-65 sm:py-15">
@@ -74,33 +94,26 @@ const RegisterPage = () => {
                             <p className="mb-5 sm:mb-4">Sign Up to Get Started</p>
                             <fieldset className="fieldset">
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Full Name</legend>
-                                <input type="text" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your full name" />
+                                <input onChange={changeName} type="text" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your full name" />
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Email Address</legend>
-                                <input type="email" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your email address" />
+                                <input onChange={changeEmail} type="email" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your email address" />
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Password</legend>
-                                <input type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Enter your password" />
+                                <input onChange={changePassword} type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Enter your password" />
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Confirm Password</legend>
-                                <input type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Confirm your password" />
+                                <input onChange={changeConfirmPassword} type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Confirm your password" />
                                 <div className="flex items-center gap-2 mt-2 sm:mt-4">
-                                    <input type="checkbox" className="checkbox bg-[#f2f2f2] checked:bg-blue-500 text-white border-[#e5e5e5] border-[0.5px]" />
+                                    <input onChange={handleCheckbox} type="checkbox" checked={isChecked} className="checkbox bg-[#f2f2f2] checked:bg-blue-500 text-white border-[#e5e5e5] border-[0.5px]" />
                                     <span className="text-[13px]">I agree to the Terms & Conditions</span>
                                 </div>
-                                <button className="btn bg-[#007aff] active:bg-[#2e5b8c] text-white text-[16px] rounded-lg mt-5 sm:mt-7 h-12">
-                                    Sign in
+                                <button onClick={handleSubmit} className="btn bg-[#007aff] active:bg-[#2e5b8c] text-white text-[16px] rounded-lg mt-5 sm:mt-7 h-12" disabled={isDisabled}>
+                                    Sign up
                                 </button>
                                 <p className="text-[13px] text-center mt-5 sm:mt-4">
-                                    Don't have an account? <a href="" className="text-[#007aff] text-[13px] hover:underline ml-1">Sign up now</a>
+                                    Already have an account? <a href="/login" className="text-[#007aff] text-[13px] hover:underline ml-1">Sign in now</a>
                                 </p>
                             </fieldset>
                         </div>
                     </div>
-                    {/* <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <img src="/login/Figma.png" alt="" />
-                            <a href="https://www.figma.com/@uiunicorn" target="_blank" className="text-[#007aff] text-[13px] ml-1">@uiunicom</a>
-                        </div>
-                        <p className="text-[13px] text-[#666666]">@ Perfect Login 2021</p>
-                    </div> */}
                 </div>
             </div>
         </div>

@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'sonner';
 
 const LoginPage = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isDisabled, setIsDisabled] = useState("disabled");
 
-    const changeUsername = (e) => {
-        setUsername(e.target.value);
+    const changeEmail = (e) => {
+        setEmail(e.target.value);
     };
 
     const changePassword = (e) => {
@@ -17,15 +18,9 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const [theme, setTheme] = useState('light');
-
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
-    };
-
     const handleSubmit = async () => {
         const payload = {
-            username: username,
+            email: email,
             password: password,
         };
 
@@ -54,8 +49,16 @@ const LoginPage = () => {
 
     useEffect(() => {
       document.title = "ASG_D30 | Login";
-      document.documentElement.setAttribute('data-theme', theme);
-    }, []);
+    }, [])
+    
+
+    useEffect(() => {
+      if (email.length > 0 && password.length > 0) {
+        setIsDisabled("");
+      } else {
+        setIsDisabled("disabled");
+      }
+    }, [email, password]);
 
     return (
         <div className="flex justify-center items-center h-screen sm:bg-black sm:px-65 sm:py-15">
@@ -74,9 +77,9 @@ const LoginPage = () => {
                             <p className="mb-5 sm:mb-4">Welcome Back</p>
                             <fieldset className="fieldset">
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Email Address</legend>
-                                <input type="text" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your email address" />
+                                <input type="text" onChange={changeEmail} className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg mb-2 sm:mb-0" placeholder="Enter your email address" />
                                 <legend className="hidden sm:block fieldset-legend text-[12px] font-normal pl-5 pb-2">Password</legend>
-                                <input type="password" className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Enter your password" />
+                                <input type="password" onChange={changePassword} className="input input-lg bg-[#f2f2f2] border-[#e5e5e5] focus:border-[#007aff] border-[0.5px] w-full h-13 px-4 focus:outline-none rounded-lg" placeholder="Enter your password" />
                                 <div className="flex justify-between items-center w-full mt-2 sm:mt-4">
                                     <div className="flex items-center gap-2">
                                         <input type="checkbox" className="toggle bg-[#f2f2f2] checked:bg-blue-500 text-white border-[#e5e5e5] border-[0.5px]" />
@@ -84,7 +87,7 @@ const LoginPage = () => {
                                     </div>
                                     <a href="" className="text-[#007aff] text-[13px] hover:underline">Forgot password?</a>
                                 </div>
-                                <button className="btn bg-[#007aff] active:bg-[#2e5b8c] text-white text-[16px] rounded-lg mt-5 sm:mt-7 h-12">
+                                <button onClick={handleSubmit} className="btn bg-[#007aff] active:bg-[#2e5b8c] text-white text-[16px] rounded-lg mt-5 sm:mt-7 h-12" disabled={isDisabled}>
                                     Sign in
                                 </button>
                                 <hr className="border-[#e5e5e5] my-5 sm:my-7" />
@@ -93,18 +96,11 @@ const LoginPage = () => {
                                     Or sign in with Google
                                 </button>
                                 <p className="text-[13px] text-center mt-5 sm:mt-4">
-                                    Don't have an account? <a href="" className="text-[#007aff] text-[13px] hover:underline ml-1">Sign up now</a>
+                                    Don't have an account? <a href="/register" className="text-[#007aff] text-[13px] hover:underline ml-1">Sign up now</a>
                                 </p>
                             </fieldset>
                         </div>
                     </div>
-                    {/* <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <img src="/login/Figma.png" alt="" />
-                            <a href="https://www.figma.com/@uiunicorn" target="_blank" className="text-[#007aff] text-[13px] ml-1">@uiunicom</a>
-                        </div>
-                        <p className="text-[13px] text-[#666666]">@ Perfect Login 2021</p>
-                    </div> */}
                 </div>
             </div>
         </div>
