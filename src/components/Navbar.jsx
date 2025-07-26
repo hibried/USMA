@@ -9,7 +9,7 @@ export default function Navbar() {
         const loading_toast = toast.loading("Logging out...");
         localStorage.removeItem("accessToken");
         setTimeout(() => {
-            navigate("/login");
+            navigate("/landing");
             toast.dismiss(loading_toast);
             toast.success('Successfully logged out');
         }, 2000);

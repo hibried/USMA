@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
-    const [theme, setTheme] = useState('light');
-    
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
-    };
+
+    const navigate = useNavigate();
+
+    function login() {
+        navigate('/login');
+    }
+
+    function register() {
+        navigate('/register');
+    }
 
     useEffect(() => {
       document.title = "ASG_D30 | Landing";
-      document.documentElement.setAttribute('data-theme', theme);
     }, []);
 
     return (
@@ -19,15 +24,15 @@ function LandingPage() {
                 <div className="flex items-center gap-10">
                     <img src="/landing/Logo.png" alt="" />
                     <ul className="hidden lg:flex gap-7 font-semibold">
-                        <li>For Candidates</li>
-                        <li>For Employees</li>
-                        <li>About</li>
-                        <li>Blog</li>
+                        <li><a href="">For Candidates</a></li>
+                        <li><a href="">For Employees</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Blog</a></li>
                     </ul>
                 </div>
                 <div className="flex items-center gap-4">
-                    <button className="hidden sm:block btn btn-soft btn-primary rounded-lg">Sign in</button>
-                    <button className="hidden sm:block btn btn-primary rounded-lg">Sign up</button>
+                    <button onClick={login} className="hidden sm:block btn bg-[#ede9fe] text-[#7c3aed] rounded-lg">Sign in</button>
+                    <button onClick={register} className="hidden sm:block btn bg-[#7c3aed] text-white rounded-lg">Sign up</button>
                     <div className="lg:hidden dropdown dropdown-end ml-2">
                         <div tabIndex={0} role="button">
                             <img src="/landing/more.png" className="cursor-pointer" alt="" />
@@ -35,13 +40,13 @@ function LandingPage() {
                         <ul
                             tabIndex={0}
                             className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-46 p-2 shadow-sm">
-                            <li><a>For Candidates</a></li>
-                            <li><a>For Employees</a></li>
-                            <li><a>About</a></li>
-                            <li><a>Blog</a></li>
+                            <li><a href="">For Candidates</a></li>
+                            <li><a href="">For Employees</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Blog</a></li>
                             <li className="flex sm:hidden flex-row gap-2 mt-4">
-                                <button className="btn btn-soft btn-primary rounded-lg">Sign in</button>
-                                <button className="btn btn-primary rounded-lg">Sign up</button>
+                                <button onClick={login} className="btn bg-[#ede9fe] text-[#7c3aed] rounded-lg">Sign in</button>
+                                <button onClick={register} className="btn bg-[#7c3aed] text-white rounded-lg">Sign up</button>
                             </li>
                         </ul>
                     </div>
@@ -55,10 +60,10 @@ function LandingPage() {
                         All-in-one recruiting platform that helps you hire<br className="hidden lg:block" /> the best candidate your mission needs.
                     </p>
                     <div className="flex gap-9">
-                        <button className="btn btn-primary rounded-lg p-6">Start Hiring</button>
+                        <button onClick={register} className="btn bg-[#7c3aed] text-white rounded-lg p-6">Sign up</button>
                         <a href="" className="flex items-center gap-2 link-primary">
                             <img src="/landing/play-icon.png" alt="" />
-                            <span className="font-semibold text-[14px]">How it works</span>
+                            <span className="text-[#7c3aed] text-[14px] font-semibold">How it works</span>
                         </a>
                     </div>
                 </div>
@@ -84,7 +89,7 @@ function LandingPage() {
                 </div>
             </div>
             {/* Features */}
-            <div className="bg-white px-5 sm:px-10 lg:px-18 xl:px-30 lg:py-30 relative">
+            <div className="bg-white px-5 sm:px-10 lg:px-18 xl:px-30 lg:pt-30 pb-12 md:pb-20 lg:pb-24 relative">
                 <div className="absolute top-[-1.15%] sm:top-[-5%] lg:top-17 right-0 sm:right-2 md:right-8 bg-[#9c70e921] w-[250px] h-[250px] sm:w-[424px] sm:h-[424px] md:w-[550px] md:h-[550px] rounded-full shrink-0">
                 </div>
                 <h3 className="text-4xl md:text-5xl font-bold leading-15 mb-10 sm:mb-14 md:mb-19 relative">Discover the key features</h3>
@@ -120,6 +125,60 @@ function LandingPage() {
                     <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-42 md:h-54">
                         <h4 className="text-2xl lg:text-3xl font-bold">Mobile<br className="hidden md:block" /> Responsive</h4>
                         <img src="/landing/Property 1=08.png" className="w-8" alt="" />
+                    </div>
+                </div>
+            </div>
+            {/* Get Started */}
+            <div className="bg-[#381b6a] px-5 sm:px-10 lg:px-28 pt-22">
+                <h3 className="text-4xl text-white md:text-5xl font-bold leading-15 mb-8 sm:mb-10 md:mb-8 relative">Get started with Landify<br className="hidden md:block" /> today.</h3>
+                <a href="/register" className="flex gap-2 text-[#1DB5BE] font-semibold mb-22">Sign up for a free account <img src="/landing/Icon=arrow-right.png" alt="" /></a>
+                <img src="/landing/dark_2.png" className="w-full object-cover rounded-t-lg border-1 border-gray-600 border-b-0" alt="" />
+            </div>
+            {/* Footer */}
+            <div className="bg-black px-5 sm:px-10 lg:px-28 pt-20 md:pt-24 pb-6 sm:pb-7 relative overflow-hidden">
+                <img src="/landing/Color=White.png" className="absolute top-0 -left-50 opacity-[0.05]" alt="" />
+                <div className="lg:grid grid-cols-[1fr_1fr] relative mb-21 md:mb-33">
+                    <img src="/landing/Color=Light.png" className="mb-12" alt="" />
+                    <div className="flex flex-col sm:flex-row sm:justify-between lg:justify-start gap-8 sm:gap-0 text-white">
+                        <div className="min-w-[206px]">
+                            <h5 className="text-2xl font-semibold mb-4 sm:mb-8">Product</h5>
+                            <ul className="flex flex-col gap-3">
+                                <li><a href="">Overview</a></li>
+                                <li><a href="">Features</a></li>
+                                <li><a href="">Tutorials</a></li>
+                                <li><a href="">Pricing</a></li>
+                                <li><a href="">Releases</a></li>
+                            </ul>
+                        </div>
+                        <div className="min-w-[206px]">
+                            <h5 className="text-2xl font-semibold mb-4 sm:mb-8">Company</h5>
+                            <ul className="flex flex-col gap-3">
+                                <li><a href="">About</a></li>
+                                <li><a href="">Press</a></li>
+                                <li><a href="">Careers</a></li>
+                                <li><a href="">Contact</a></li>
+                                <li><a href="">Partners</a></li>
+                            </ul>
+                        </div>
+                        <div className="min-w-[206px]">
+                            <h5 className="text-2xl font-semibold mb-4 sm:mb-8">Support</h5>
+                            <ul className="flex flex-col gap-3">
+                                <li><a href="">Help Center</a></li>
+                                <li><a href="">Terms of service</a></li>
+                                <li><a href="">Legal</a></li>
+                                <li><a href="">Privacy Policy</a></li>
+                                <li><a href="">Status</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex flex-col sm:flex-row justify-center sm:justify-around md:justify-between items-center gap-9 sm:gap-0 relative">
+                    <p className="text-white text-[14px]">© 2021 Landify UI Kit. All rights reserved</p>
+                    <div className="flex gap-4">
+                        <a href=""><img src="/landing/instagram.svg" alt="" /></a>
+                        <a href=""><img src="/landing/dribble.svg" alt="" /></a>
+                        <a href=""><img src="/landing/twitter.svg" alt="" /></a>
+                        <a href=""><img src="/landing/youtube.svg" alt="" /></a>
                     </div>
                 </div>
             </div>
