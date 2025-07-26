@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+html {
+  background-color: #f5f6fa;
+}
+
 /* body {
   margin: 0;
   display: flex;

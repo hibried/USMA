@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
     }
 
     return <>
-        <Navbar />
+        {/* <Navbar /> */}
         {children || <Outlet />}
     </>
 };
